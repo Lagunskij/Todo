@@ -3,15 +3,16 @@ import {TasksStateType} from '../App';
 import {AddTodolistAC, RemoveTodolistAC} from "./todolist-reducer";
 import {v1} from "uuid";
 
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-let todolistId1:string;
+let todolistId1: string
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-let todolistId2:string;
+let todolistId2: string
 let startState: TasksStateType = {}
 
 beforeEach(() => {
-    todolistId1 = v1();
-    todolistId2 = v1();
+   todolistId1 = v1();
+  todolistId2 = v1();
     startState = {
         'todolistId1': [
             {id: "1", title: "CSS", isDone: false},

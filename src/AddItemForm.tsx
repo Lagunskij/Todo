@@ -6,7 +6,7 @@ export type addItemFormPropsType = {
     addItem: (title: string) => void
 }
 
-export const AddItemForm = (props: addItemFormPropsType) => {
+export const AddItemForm = React.memo((props: addItemFormPropsType) => {
 
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
@@ -26,14 +26,13 @@ export const AddItemForm = (props: addItemFormPropsType) => {
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (error !== null)
-        setError(null)
+        setError(null);
         if (e.charCode === 13) {
-            addItem()
+            addItem();
         }
     }
 
-    return (
-        <div>
+    return <div>
             <TextField variant={"outlined"}
                        value={title}
                        onChange={onChangeHandler}
@@ -45,7 +44,5 @@ export const AddItemForm = (props: addItemFormPropsType) => {
             <IconButton color={"primary"} onClick={addItem}>
                 <AddBox/>
             </IconButton>
-
         </div>
-    )
-}
+});
