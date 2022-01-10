@@ -11,9 +11,9 @@ import {
     TodolistDomainType
 } from './reducers/todolist-reducer'
 import {addTaskTC, removeTaskTC, TasksStateType, updateTaskTC} from './reducers/tasks-reducer'
-import {Grid, Paper} from '@material-ui/core'
+import {Grid, LinearProgress, Paper} from '@material-ui/core'
 import {TaskStatuses} from "./api/api";
-import {AddItemForm} from "./AddItemForm";
+import {AddItemForm} from "./components/AddItemForm";
 import {Todolist} from "./Todolist";
 
 export const TodolistsList: React.FC = () => {

@@ -1,5 +1,6 @@
 import {todolistsAPI, TodolistType} from '../api/api'
 import {Dispatch} from 'redux'
+import {SetErrorActionType, setStatusAC, SetStatusActionType} from "./app-reducer";
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -38,36 +39,35 @@ export const setTodolistsAC = (todolists: Array<TodolistType>) => ({type: 'SET-T
 // thunks
 export const fetchTodolistsTC = () => {
     return (dispatch: Dispatch<ActionsType>) => {
+        dispatch(setStatusAC('loading'));
         todolistsAPI.getTodolists()
             .then((res) => {
-                dispatch(setTodolistsAC(res.data))
+                dispatch(setTodolistsAC(res.data));
+                dispatch(setStatusAC('succeeded'));
             })
     }
 }
-export const removeTodolistTC = (todolistId: string) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+export const removeTodolistTC = (todolistId: string) => (dispatch: Dispatch<ActionsType>) => {
         todolistsAPI.deleteTodolist(todolistId)
             .then(() => {
                 dispatch(removeTodolistAC(todolistId))
             })
     }
-}
-export const addTodolistTC = (title: string) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+
+export const addTodolistTC = (title: string) => (dispatch: Dispatch<ActionsType>) => {
         todolistsAPI.createTodolist(title)
             .then((res) => {
                 dispatch(addTodolistAC(res.data.data.item))
             })
     }
-}
-export const changeTodolistTitleTC = (id: string, title: string) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+
+export const changeTodolistTitleTC = (id: string, title: string) => (dispatch: Dispatch<ActionsType>) => {
         todolistsAPI.updateTodolist(id, title)
             .then(() => {
                 dispatch(changeTodolistTitleAC(id, title))
             })
     }
-}
+
 
 // types
 export type AddTodolistActionType = ReturnType<typeof addTodolistAC>;
@@ -79,6 +79,9 @@ type ActionsType =
     | ReturnType<typeof changeTodolistTitleAC>
     | ReturnType<typeof changeTodolistFilterAC>
     | SetTodolistsActionType
+    | SetErrorActionType
+    | SetStatusActionType
+
 export type FilterValuesType = 'all' | 'active' | 'completed';
 export type TodolistDomainType = TodolistType & {
     filter: FilterValuesType

@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from "react";
 import {FilterValuesType} from "./reducers/todolist-reducer";
-import {AddItemForm} from "./AddItemForm";
-import {EditableSpan} from "./EditableSpan";
+import {AddItemForm} from "./components/AddItemForm";
+import {EditableSpan} from "./components/EditableSpan";
 import {Button,IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import {Task} from "./Task";
