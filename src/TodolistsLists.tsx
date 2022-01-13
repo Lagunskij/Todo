@@ -11,7 +11,7 @@ import {
     TodolistDomainType
 } from './reducers/todolist-reducer'
 import {addTaskTC, removeTaskTC, TasksStateType, updateTaskTC} from './reducers/tasks-reducer'
-import {Grid, LinearProgress, Paper} from '@material-ui/core'
+import {Grid,Paper} from '@material-ui/core'
 import {TaskStatuses} from "./api/api";
 import {AddItemForm} from "./components/AddItemForm";
 import {Todolist} from "./Todolist";
@@ -79,14 +79,12 @@ export const TodolistsList: React.FC = () => {
                     return <Grid item key={tl.id}>
                         <Paper style={{padding: '10px'}}>
                             <Todolist
-                                id={tl.id}
-                                title={tl.title}
+                                todolist={tl}
                                 tasks={allTodolistTasks}
                                 removeTask={removeTask}
                                 changeFilter={changeFilter}
                                 addTask={addTask}
                                 changeTaskStatus={changeStatus}
-                                filter={tl.filter}
                                 removeTodolist={removeTodolist}
                                 changeTaskTitle={changeTaskTitle}
                                 changeTodolistTitle={changeTodolistTitle}
